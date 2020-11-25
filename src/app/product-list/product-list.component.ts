@@ -17,6 +17,11 @@ export class ProductListComponent implements OnInit {
     window.alert('Product is now shared!');
   }
 
+  // tslint:disable-next-line:typedef
+  onNotify() {
+    window.alert('You will be notified when the product goes on sale');
+  }
+
   ngOnInit(): void {
   }
 
