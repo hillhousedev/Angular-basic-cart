@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable({
@@ -7,6 +8,10 @@ import { Injectable } from '@angular/core';
 export class CartService {
 
   items = [];
+
+  constructor(
+    private http: HttpClient
+  ) { }
 
   // tslint:disable-next-line:typedef
   addToCart(product) {
@@ -24,5 +29,8 @@ export class CartService {
     return this.items;
   }
 
-  constructor() { }
+  // tslint:disable-next-line:typedef
+  getShippingPrices() {
+    return this.http.get('/assets/shipping.json');
+  }
 }
