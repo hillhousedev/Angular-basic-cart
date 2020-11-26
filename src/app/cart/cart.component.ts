@@ -12,13 +12,32 @@ import { CartService } from '../cart.service';
 export class CartComponent implements OnInit {
 
   items;
+  checkoutForm;
 
   constructor(
-    private cartService: CartService
-  ) { }
+    private cartService: CartService,
+    private formBuilder: FormBuilder,
+  // tslint:disable-next-line:no-trailing-whitespace
+  ) { 
+      this.checkoutForm = this.formBuilder.group({
+        name: '',
+        address: ''
+      });
+  }
 
-  ngOnInit(): void {
+  // tslint:disable-next-line:typedef
+  ngOnInit(){
     this.items = this.cartService.getItems();
   }
+
+  // tslint:disable-next-line:typedef
+  onSubmit(customerData) {
+    // Process checkout data here 
+    this.items = this.cartService.clearCart();
+    this.checkoutForm.reset();
+
+    console.warn('Your order has been submitted ', customerData);
+  }
+
 
 }
